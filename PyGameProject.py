@@ -94,7 +94,7 @@ while bool:
             bool = False
     
 
-    if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 player2speedx = -5
             if event.key == pygame.K_RIGHT:
@@ -142,3 +142,49 @@ while bool:
             player2speedy = 0
         if event.type == pygame.MOUSEBUTTONUP and event.button == RIGHT:
             player2speedy = 0
+
+    # collision of players with the wall
+    player2X += player2speedx
+    if player2X <= 750:
+        player2X = 750
+    elif player2X >= 1380:
+        player2X = 1380
+    player2Y += player2speedy
+    if player2Y <= 20:
+        player2Y = 20
+    elif player2Y >= 680:
+        player2Y = 680
+    
+
+    player1X += player1speedx
+    if player1X <= 20:
+        player1X = 20
+    elif player1X >= 650:
+        player1X = 650
+    player1Y += player1speedy
+    if player1Y <= 20:
+        player1Y = 20
+    elif player1Y >= 680:
+        player1Y = 680
+    
+    
+               
+    # collision of ball with players
+    ball_rect = pygame.Rect(ballX, ballY, 100, 100)
+    player1_rect = pygame.Rect(player1X, player1Y, 100, 100)
+    player2_rect = pygame.Rect(player2X, player2Y, 100, 100)
+
+    tolerance = 10
+    if ball_rect.colliderect(player1_rect):
+        if (ball_rect.top - player1_rect.bottom) < tolerance and ballspeedY > 0:
+            ballspeedY *= -1
+
+        elif (ball_rect.bottom - player1_rect.top) < tolerance and ballspeedY < 0:
+            ballspeedY *= -1
+            
+        elif (ball_rect.left - player1_rect.right) < tolerance and ballspeedX < 0:
+            ballspeedX *= -1
+            
+        elif (ball_rect.right - player1_rect.left) < tolerance and ballspeedX > 0:
+            ballspeedX *= -1
+        
