@@ -21,6 +21,14 @@ pygame.display.set_caption('Air Hockey')
 icon = pygame.image.load('icon.png')
 pygame.display.set_icon(icon)
 
+# hockey ball
+ball_icon = pygame.image.load('ball.png')
+ball_icon = pg.transform.scale(ball_icon, (100, 100))
+ballX = 700
+ballY = 350
+ballspeedX, ballspeedY = 8, 8
+ball_rect = pygame.Rect(ballX, ballY, 100, 100)
+
 # moving the ball
 def ball():
     global ballY, ballX, ballspeedY, ballspeedX, ball_rect, text1, text2, screen, text1rect, text2rect, log, score1, score2, screen
@@ -30,6 +38,24 @@ def ball():
         log = log + 1
 
     screen.blit(ball_icon, (ballX, ballY))
+
+    if ballY >= 250 and ballY <= 450 and ballX <=20:
+        score2 += 1
+        underdefault()
+    elif ballY >= 250 and ballY <= 450 and ballX >= 1380:
+        score1 += 1
+        underdefault()
+    else:
+        ballY += ballspeedY
+        if ballY >= 680:
+            ballspeedY *= -1
+        elif ballY <= 20:
+            ballspeedY *= -1
+        ballX += ballspeedX
+        if ballX >= 1380:
+            ballspeedX *= -1
+        elif ballX <= 20:
+            ballspeedX *= -1
 
 # blue player's characteristics 
 player1_icon = pygame.image.load('playerleft.png')
