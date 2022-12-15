@@ -92,3 +92,53 @@ while bool:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             bool = False
+    
+
+    if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                player2speedx = -5
+            if event.key == pygame.K_RIGHT:
+                player2speedx = 5
+            if event.key == pygame.K_UP:
+                player2speedy = -5
+            if event.key == pygame.K_DOWN:
+                player2speedy = 5
+            
+            if event.key == pygame.K_a:
+                player1speedx = -5
+            if event.key == pygame.K_d:
+                player1speedx = 5
+            if event.key == pygame.K_w:
+                player1speedy = -5
+            if event.key == pygame.K_s:
+                player1speedy = 5
+        
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_a or event.key == pygame.K_d:
+                player1speedx = 0
+            if event.key == pygame.K_w or event.key == pygame.K_s:
+                player1speedy = 0
+            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                player2speedx = 0
+            if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+                player2speedy = 0
+            if event.key == pygame.K_SPACE and game:
+                print('done')
+                ballX = 700
+                ballY = 350
+                player1X = 300
+                player1Y = 350 
+                player2X = 1100
+                player2Y = 350
+                score1 = 0
+                score2 = 0
+                game = False
+        LEFT, RIGHT = 1, 3
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT:
+            player2speedy = -5
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == RIGHT:
+            player2speedy = 5
+        if event.type == pygame.MOUSEBUTTONUP and event.button == LEFT:
+            player2speedy = 0
+        if event.type == pygame.MOUSEBUTTONUP and event.button == RIGHT:
+            player2speedy = 0
