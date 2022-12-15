@@ -177,7 +177,6 @@ while bool:
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 player2speedy = 0
             if event.key == pygame.K_SPACE and game:
-                print('done')
                 ballX = 700
                 ballY = 350
                 player1X = 300
