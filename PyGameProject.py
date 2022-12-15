@@ -12,6 +12,9 @@ from win32api import GetSystemMetrics
 pygame.init()
 mixer.init()
 
+# FPS
+clock = pygame.time.Clock()
+
 # main screen
 screen = pygame.display.set_mode((1500, 826))
 background = pygame.image.load('hockey.jpg')
@@ -20,6 +23,17 @@ pygame.display.set_caption('Air Hockey')
 # icon of the main screen
 icon = pygame.image.load('icon.png')
 pygame.display.set_icon(icon)
+
+# music file
+r1 = pygame.mixer.Sound("endgame.wav")
+mixer.music.set_volume(0.7)
+r2 = pygame.mixer.Sound("endround.wav")
+
+# score variables
+global score1, score2, log
+log = 0
+score1 = 1
+score2 = 1
 
 # hockey ball
 ball_icon = pygame.image.load('ball.png')
@@ -78,6 +92,22 @@ def player2():
     screen.blit(player2_icon, (player2X, player2Y))
 
 
+# scoring   
+def score(scr1, scr2):
+    pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(0, 800, 1500, 26))
+    font = pygame.font.Font('Soligant.ttf', 20)
+
+    text1 = font.render('Score Blue: '+ str(scr1), True, (0, 0, 255))
+    text2 = font.render('Score Red: '+ str(scr2), True, (255, 0, 0))
+    text1rect = text1.get_rect()
+    text1rect.center = (100, 813)
+    text2rect = text2.get_rect()
+    text2rect.center = (1400, 813)
+    screen.blit(text1, text1rect)
+    screen.blit(text2, text2rect)
+    pygame.display.update()
+
+
 # default when one of the playersget score
 def underdefault():
     global ballX, ballY, player1X, player2X, player1Y, player2Y
@@ -89,7 +119,7 @@ def underdefault():
     player2X = 1100
     player2Y = 350
 
-    
+
 # restarting game
 def default():
     global game
