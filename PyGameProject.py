@@ -78,6 +78,29 @@ def player2():
     screen.blit(player2_icon, (player2X, player2Y))
 
 
+# default when one of the playersget score
+def underdefault():
+    global ballX, ballY, player1X, player2X, player1Y, player2Y
+    pygame.mixer.Sound.play(r2)
+    ballX = 700
+    ballY = 350
+    player1X = 300
+    player1Y = 350 
+    player2X = 1100
+    player2Y = 350
+
+    
+# restarting game
+def default():
+    global game
+    font = pygame.font.Font('Bubblegum.ttf', 30)
+    display_over = font.render("Game Over", True, (0, 0, 0), (125, 0, 255))
+    screen.blit(display_over, (680, 350))
+    display_restart = font.render("Press Space to Restart", True, (0, 0, 0), (125, 0, 255))
+    screen.blit(display_restart, (575, 400))
+    pygame.mixer.Sound.play(r1)
+    game = True
+
 
 bool = True
 while bool:
