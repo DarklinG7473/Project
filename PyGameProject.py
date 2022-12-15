@@ -187,4 +187,30 @@ while bool:
             
         elif (ball_rect.right - player1_rect.left) < tolerance and ballspeedX > 0:
             ballspeedX *= -1
-        
+
+
+    if ball_rect.colliderect(player2_rect):
+        if (ball_rect.top - player2_rect.bottom) < tolerance and ballspeedY < 0:
+            ballspeedY *= -1
+            
+        elif (ball_rect.bottom - player2_rect.top) < tolerance and ballspeedY > 0:
+            ballspeedY *= -1
+            
+        elif (ball_rect.right - player2_rect.left) < tolerance and ballspeedX > 0:
+            ballspeedX *= -1
+            
+        elif (ball_rect.left - player2_rect.right) < tolerance and ballspeedX < 0:
+            ballspeedX *= -1
+            
+    # maximum score can be 7
+    if score1 == 7 or score == 7:
+        ballspeedX = 0
+        ballspeedY = 0
+        default() 
+
+    # score output
+    score(score1, score2)
+    clock.tick(60)
+
+    # updating display
+    pygame.display.update()
