@@ -108,7 +108,7 @@ def score(scr1, scr2):
     pygame.display.update()
 
 
-# default when one of the playersget score
+# default when one of the players get score
 def underdefault():
     global ballX, ballY, player1X, player2X, player1Y, player2Y
     pygame.mixer.Sound.play(r2)
@@ -132,6 +132,7 @@ def default():
     game = True
 
 
+game = False
 bool = True
 while bool:
 
